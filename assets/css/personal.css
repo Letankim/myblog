@@ -1,0 +1,142 @@
+.wrapper_profile {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    padding: 30px 10px;
+    gap: 20px;
+}
+.title_personal {
+    font-size: 20px;
+    color: rgb(200, 153, 153);
+}
+.profile_main {
+    flex: 1;
+    padding: 0px 15px;
+}
+.box_wrapper_info {
+    flex: 1;
+    padding: 20px 10px;
+}
+.profile_main_title h2{
+    margin-bottom: 10px;
+}
+.container_main_profile {
+    display: flex;
+    gap: 10px;
+}
+.wrapper_infor {
+    padding: 5px 0px;
+}
+.avatar_peronal {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+.title_infor {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.main_infor {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 14px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.change_info {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: #fff;
+}
+.container_main_profile.update_information {
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.wrapper_input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.title_input {
+    flex: 0 0 15%;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.wrapper_input input {
+    flex: 1;
+    padding: 5px 10px;
+}
+.submit_input {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: #fff;
+}
+.update_information,
+.update_information {
+    display: none;
+}
+.update_information.active,
+.update_information.active {
+    display: flex;
+}
+.input_avatar {
+    padding: 10px 20px;
+    background-color: rgb(158, 158, 158);
+    border-radius: 5px;
+}
+
+.show_img_demo {
+    width: 150px;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 739px) {
+    .wrapper_profile {
+        width: 100%;
+        flex-direction: column;
+    }
+    .avatar_peronal {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .title_infor {
+        font-size: 12px;
+    }
+    .main_infor {
+        font-size: 13px;
+    }
+    .change_info {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    .title_input {
+        min-width: 65px;
+        font-size: 10px;
+    }
+    
+}

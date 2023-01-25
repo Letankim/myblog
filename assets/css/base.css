@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,200;1,100;1,200&family=League+Spartan:wght@300;400;500;600;700;800;900&family=Lobster&family=Roboto+Mono:ital,wght@0,500;1,300&display=swap');
+:root {
+    --height-header: 75px;
+    --background-header: #0f162f;
+    --height-banner: 640px;
+    --main-color: #ad7b67;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Roboto", sans-serif;
+}
+
+@keyframes showSearch {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+    25% {
+        width: 50px;
+        opacity: 0.3;
+    }
+    50% {
+        width: 100px;
+        opacity: 0.6;
+    }
+    75% {
+        width: 150px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 200px;
+        opacity: 1;
+    }
+}
