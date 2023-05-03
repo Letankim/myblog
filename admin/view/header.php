@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./view/css/main.css">
     <link rel="stylesheet" href="./view/css/responsive.css">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Trang chủ</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
         <div class="header">
             <h2 class="name_app">My admin blog</h2>
             <img src="../uploads/logo.png" alt="" class="header_logo">
-            <div class="box_menu">
+            <div class="box_menu hide_on_laptop">
                 <i class='bx bx-menu' ></i>
             </div>
         </div>

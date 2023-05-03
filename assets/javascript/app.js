@@ -41,3 +41,28 @@ if(boxAdver) {
         boxAdver.classList.remove('active');
     }
 }
+// check email 
+const inputEmail  = document.querySelector('.input_email'),
+      messageErrorEmail = document.querySelector('.message_error_email'),
+      btnSubmitSendMessage = document.querySelector('.btn_submit_send_message'),
+      inputPhone = document.querySelector('.input_phone'),
+      messageErrorPhone = document.querySelector('.message_error_phone');
+
+inputEmail.addEventListener('blur', (e) =>{
+    const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    regex(re,e.target.value, messageErrorEmail)
+})
+inputPhone.addEventListener('blur',(e)=> {
+    const re = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
+    regex(re, e.target.value, messageErrorPhone);
+})
+function regex(type, value, elementMessage) {
+    if(type.test(value)) {
+        btnSubmitSendMessage.disabled = false;
+        elementMessage.style.display = 'none';
+    } else {
+        btnSubmitSendMessage.disabled = true;
+        elementMessage.style.display = 'block';
+    }
+}
+

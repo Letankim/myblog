@@ -1,8 +1,10 @@
 </div>
     </div>
 </body>
+<script src="./view/js/Ajax/filter.js"></script>
+<script src="./view/js/Ajax/toggleStatus.js"></script>
 <script src="./view/js/main.js"></script>
-<script src="./ckeditor/ckeditor.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('content_post');
 </script>

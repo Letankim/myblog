@@ -1,7 +1,25 @@
 <?php
     function getAllBanner() {
         $conn = connect();
-        $stmt = $conn->prepare("SELECT * FROM tbl_banner");
+        $stmt = $conn->prepare("SELECT * FROM tbl_banner ORDER BY id DESC");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
+    function devicePageBanner($page, $numberPage) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_banner ORDER BY id DESC LIMIT $page, $numberPage");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
+    function getFilterBanner($status) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_banner WHERE status=$status ORDER BY id DESC");
         $stmt->execute();
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -29,6 +47,12 @@
         } else {
             $sql = "UPDATE tbl_banner SET status='$status' WHERE id='$id'";
         }
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    }
+    function updateStatusBanner($id,$status) {
+        $conn = connect();
+        $sql = "UPDATE tbl_banner SET status='$status' WHERE id='$id'";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }

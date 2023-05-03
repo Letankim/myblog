@@ -10,7 +10,16 @@
     }
     function getOneComment($id) {
         $conn = connect();
-        $stmt = $conn->prepare("SELECT * FROM tbl_comment WHERE id =$id");
+        $stmt = $conn->prepare("SELECT * FROM tbl_comment WHERE id=$id");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
+    function getAllCommentByIdPost($idPost) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_comment WHERE idPost =$idPost ORDER BY id DESC");
         $stmt->execute();
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);

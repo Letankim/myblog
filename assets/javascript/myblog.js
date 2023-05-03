@@ -15,3 +15,9 @@ if(duongdan) {
     }
 }
 
+//  click on post
+
+function moveOtherPage(ele) {
+    const hr = ele.querySelector('.href__move_page');
+    hr.click();
+}

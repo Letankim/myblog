@@ -50,11 +50,11 @@
                         <i class='bx bx-show interact' ></i>
                         <i class='bx bx-hide interact' ></i>
                     </div>
-                    <a href="../admin/forestPass.php" class="forest_pass">Forgot Password</a>
+                    <a href="../admin/auth/forestPass.php" class="forest_pass">Forgot Password</a>
                     <input type="submit" value="Login" name = "submit" class = "submit">
                     <span style="color:red; display: block; margin-top: 5px;"><?=$error_message?></span>
                     <span class="or">Or</span>
-                    <a href="../admin/signup.php" class="sign_up">Sign Up</a>
+                    <a href="../admin/auth/signup.php" class="sign_up">Sign Up</a>
                 </form>
             </div>
         </div>

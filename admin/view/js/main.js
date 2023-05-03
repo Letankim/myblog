@@ -1,3 +1,4 @@
+//  menu in mobile
 let btnMenu = document.querySelector('.box_menu'),
     overlay = document.querySelector('.overlay'),
     navigation = document.querySelector('.navigation');
@@ -11,44 +12,26 @@ if(btnMenu) {
         this.classList.remove('active');
     })
 }
-
+//  show all details for post to follow
 let btnShowDetail = document.querySelectorAll('.bx-show-alt'),
     btnClose = document.querySelectorAll('.btn_close i'),
     overlayDetails = document.querySelectorAll('.overlay_show_post');
-
-if(btnShowDetail) {
-    [...btnShowDetail].forEach(function(item) {
-        item.onclick = function() {
-            let tr = this.parentElement.parentElement;
+    function clickShowDetails(ele) {
+        let tr = ele.parentElement.parentElement;
             let boxShow = tr.querySelector('.box_show_details'),
                 overlayShowDetail = tr.querySelector('.overlay_show_post');
             boxShow.classList.add('active');
             overlayShowDetail.classList.add('active');
+    }
+    function closeShow() {
+        if(document.querySelector('.box_show_details.active')) {
+            document.querySelector('.box_show_details.active').classList.remove('active');
+        } else {
+            document.querySelector('.box_show_comment.active').classList.remove('active');
         }
-    });
-    [...btnClose].forEach(function(item) {
-        item.onclick = function() {
-            if(document.querySelector('.box_show_details.active')) {
-                document.querySelector('.box_show_details.active').classList.remove('active');
-            } else {
-                document.querySelector('.box_show_comment.active').classList.remove('active');
-            }
-            document.querySelector('.overlay_show_post.active').classList.remove('active');
-        }
-        
-    });
-    [...overlayDetails].forEach(function(item) {
-        item.onclick = function() {
-            if(document.querySelector('.box_show_details.active')) {
-                document.querySelector('.box_show_details.active').classList.remove('active');
-            } else {
-                document.querySelector('.box_show_comment.active').classList.remove('active');
-            }
-            document.querySelector('.overlay_show_post.active').classList.remove('active');
-        }
-    })
-}
-
+        document.querySelector('.overlay_show_post.active').classList.remove('active');
+    }
+// show comment box for item post 
 function clickShowComment(element) {
     var parent = element.parentElement;
     var boxComment = parent.querySelector('.box_show_comment');
@@ -56,7 +39,19 @@ function clickShowComment(element) {
     boxComment.classList.add('active');
     overlayComment.classList.add('active');
 }
-
+//  show form add post
+const boxForm = document.querySelector('.box__form-add form.form__add');
+function toggleShow(ele) {
+    ele.classList.toggle('active');
+    if(ele.classList.contains('active')) {
+        ele.innerHTML = "Hide form add";
+        boxForm.style.display = "flex";
+    } else {
+        ele.innerHTML = "Show form add";
+        boxForm.style.display = "none";
+    }
+} 
+//  change title web 
 let title = document.querySelector('.header_app .title').innerText,
     listNav = document.querySelectorAll('.nav_item'),
     titleHeader = document.querySelector('title');
@@ -113,13 +108,3 @@ switch (title) {
         break;
 }
 
-// let deletePost = document.querySelectorAll('.delete');
-
-// [...deletePost].forEach(function(item) {
-//     item.addEventListener('click', function(e) {
-//         if(confirm("Are you sure to delete this post?") == false) {
-//             e.preventDefault();
-//             this.href = "";
-//         }
-//     })
-// })

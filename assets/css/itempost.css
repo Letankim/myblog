@@ -4,13 +4,18 @@
     overflow: hidden;
 }
 .infor_user {
-    flex-direction: row;
+    flex-direction: column;
 }
 .name_user {
-    margin: 0px 5px;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.3rem;
+    padding: 0px 10px;
 }
 .time_post {
-    font-size: 13px;
+    font-size: 1.3rem;
     margin-left: 5px;
     font-style: italic;
 }
@@ -33,9 +38,33 @@
     font-size: 19px;
     margin-bottom: 25px;
 }
+.main_content_item_post h1 {
+    color: var(--text-color);
+    font-size: 25px;
+    margin: 5px 0px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+
+.main_content_item_post h2 {
+    color: var(--text-color);
+    font-size: 2rem; 
+    margin-top: 10px; 
+    font-weight: bold; 
+    padding-top: 5px;
+}
+
+.main_content_item_post h3 {
+    color: var(--text-color);
+    font-size: 1.7rem; 
+    margin-top: 10px; 
+    font-weight: bold; 
+    padding-top: 5px;
+}
 .main_content_item_post img {
-    width: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: unset !important;
+    object-fit: contain;
     object-position: center;
 }
 .share_post {
@@ -54,13 +83,13 @@
 
 }
 .share_item_link {
-    font-size: 16px;
+    font-size: 1.6rem;
     text-decoration: none;
     color: #333;
     font-style: italic;
 }
 .share_item_link i {
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 .box_action {
     display: flex;
@@ -80,19 +109,19 @@
     gap: 5px;
 }
 .number_comment {
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 .comment_title {
-    font-size: 15px;
+    font-size: 1.5rem;
     font-style: italic;
 }
 .heart_item_post i{
-    font-size: 18px;
+    font-size: 1.8rem;
     cursor: pointer;
 }
 /* comments box */
 .box_user_comment {
-    width: 1000px;
+    width: var(--main-width);
     height: 100%;
     margin: 0 auto;
     margin-top: 15px;
@@ -112,7 +141,7 @@
     min-height: 400px;
 }
 .title_box_comment {
-    font-size: 25px;
+    font-size: 2.5rem;
     text-transform: uppercase;
     padding: 10px 0px;
     border-bottom: 1px solid rgb(202, 197, 197);
@@ -122,11 +151,14 @@
     display: flex;
 }
 .box_form_comment i {
-    font-size: 50px;
+    font-size: 5rem;
     color: rgb(181, 179, 179);
     margin-right: 10px;
 }
-form.comment_box {
+.wrapper__comment_box {
+    display: flex;
+}
+.comment_box {
     padding: 10px;
     border: 1px solid rgb(194, 192, 192);
     width: 100%;
@@ -148,7 +180,7 @@ button,
     outline: none;
     border: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -162,21 +194,38 @@ button {
     color: #fff;
 }
 .box_list_comment {
+    max-height: 500px;
     width: 100%;
     margin-top: 20px;
     padding: 0px 25px;
+    overflow-y: scroll;
 }
 .list_comment {
     list-style: none;
     padding-top: 15px;
     border-top: 1px solid rgb(212, 212, 212);
 }
-.avatar_peronal {
+.count__comment {
+    display: flex;
+    justify-content: flex-end;
+}
+.count__comment span {
+    font-size: 1.4rem;
+    font-style: italic;
+}
+.box__avatar_comment {
     width: 60px;
     height: 55px;
     border-radius: 50%;
     margin-right: 10px;
     object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+.avatar_peronal {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     object-position: center;
 }
 .item_comment {
@@ -195,36 +244,42 @@ button {
 }
 .username {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 1.3rem;
 }
 .time_comment {
     margin-left: 4px;
-    font-size: 11px;
+    font-size: 1.1rem;
     font-style: italic;
     color: #a1a1a1;
 }
-.item_comment .avatar {
+.box__avatar_comment.avatar__mini {
     width: 50px;
     height: 50px;
-    object-fit: cover;
+}
+.item_comment .avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     object-position: center;
-    border-radius: 50%;
-    margin-right: 10px;
 }
 .comment_content {
-    font-size: 13px;
+    font-size: 1.3rem;
     color: #333;
 }
 .box_content_comment {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 80%;
 }
 .action_comment {
+    display: flex;
+    justify-content: flex-end;
     position: relative;
+    flex: 1;
 }
 .action_comment i {
-    font-size: 20px;
+    font-size: 2rem;
     cursor: pointer;
     width: 30px;
     height: 30px;
@@ -243,13 +298,16 @@ button {
 .list_action {
     list-style: none;
     position: absolute;
-    width: 150px;
     padding: 5px 10px;
-    background-color: #333;
     border-radius: 5px;
-    top: calc(100% + 5px);
-    right: 0;
+    top: 0;
+    left: 25px;
     display: none;
+}
+.delete_comment_btn {
+    font-size: 1.4rem;
+    color: #413d3d;
+    cursor: pointer;
 }
 .list_action::before {
     content: "";
@@ -270,7 +328,7 @@ button {
     display: block;
     text-decoration: none;
     color: #fff;
-    font-size: 13px;
+    font-size: 1.3rem;
     line-height: 18px;
     font-family: sans-serif;
     width: 100%;
@@ -284,11 +342,28 @@ button {
     transition: all .5s ease;
 }
 
+.title__no-comment {
+    font-size: 1.5rem;
+    font-style: italic;
+    padding: 5px 15px;
+}
+
 @media (max-width: 739px) {
     .wrapper_post {
         width: calc(100% - 10px) !important;
     }
     /* box comments */
+    .box_list_comment {
+        padding: 0px;
+    }
+    .box__avatar_comment {
+        width: 30px;
+        height: 30px;
+    }
+    .list_action {
+        top: -22px;
+        left: -7px;
+    }
     .box_user_comment {
         width: calc(100% - 10px);
         margin: 0px 5px;
@@ -298,14 +373,14 @@ button {
         padding: 10px 20px;
     }
     .title_item_post {
-        font-size: 25px;
+        font-size: 2.5rem;
     }
     .title_box_comment {
-        font-size: 20px;
+        font-size: 2rem;
         margin-bottom: 15px;
     }
     .box_form_comment i {
-        font-size: 30px;
+        font-size: 3rem;
     }
     .input_comment {
         padding: 7px 10px;
@@ -313,6 +388,6 @@ button {
     button,
     .input_submit {
         padding: 5px 10px;
-        font-size: 10px;
+        font-size: 1rem;
     }
 }

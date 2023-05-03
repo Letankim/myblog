@@ -1,0 +1,20 @@
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteRule "^(search)$" "?act=search"
+
+RewriteRule "^([a-zA-Z0-9]+).html$" "?act=$1"
+
+RewriteRule "^post-([0-9]+)/([\w\d\S]+).html$" "?act=blogItem&id=$1&title=$2"
+
+RewriteRule "^posts/page-([0-9]+).html$" "?act=post&page=$1"
+
+RewriteRule "^login.html$" "./viewUser/login.php"
+
+RewriteRule "^login.html$" "./admin/auth/login.php"
+
+

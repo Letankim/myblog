@@ -1,12 +1,12 @@
 .wrapper_profile {
-    width: 1000px;
+    width: var(--main-width);
     margin: 0 auto;
     display: flex;
     padding: 30px 10px;
     gap: 20px;
 }
 .title_personal {
-    font-size: 20px;
+    font-size: 2rem;
     color: rgb(200, 153, 153);
 }
 .profile_main {
@@ -34,20 +34,20 @@
     object-position: center;
 }
 .title_infor {
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
 }
 .main_infor {
     font-weight: bold;
     font-style: italic;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .change_info {
     padding: 10px 20px;
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
     border: none;
@@ -70,7 +70,7 @@
 }
 .title_input {
     flex: 0 0 15%;
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -81,7 +81,7 @@
 .submit_input {
     margin-top: 10px;
     padding: 10px 20px;
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
     border: none;
@@ -125,18 +125,18 @@
         object-position: center;
     }
     .title_infor {
-        font-size: 12px;
+        font-size: 1.2rem;
     }
     .main_infor {
-        font-size: 13px;
+        font-size: 1.3rem;
     }
     .change_info {
         padding: 5px 10px;
-        font-size: 11px;
+        font-size: 1.1rem;
     }
     .title_input {
         min-width: 65px;
-        font-size: 10px;
+        font-size: 1rem;
     }
     
 }

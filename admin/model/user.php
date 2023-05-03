@@ -8,6 +8,15 @@
         $ketqua = $stmt->fetchAll();
         return $ketqua;
     }
+    function getFilterUsers($status) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_user WHERE status=$status");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
     function addUser($name, $username, $email, $password, $role, $status) {
         $conn = connect();
         $sql = "INSERT INTO tbl_user (name, username, email, password, role, status) VALUES ('$name', '$username', '$email', '$password', '$role', '$status')";
@@ -63,6 +72,11 @@
     function updateUser($id, $name, $username, $email, $password, $role, $status) {
         $conn = connect();
         $sql = "UPDATE tbl_user SET name='$name', username='$username', email='$email', password='$password', role='$role', status='$status' WHERE id='$id'";
+        $conn->exec($sql);
+    }
+    function updateStatusUser($id,$status) {
+        $conn = connect();
+        $sql = "UPDATE tbl_user SET status='$status' WHERE id='$id'";
         $conn->exec($sql);
     }
     function updateNewPass($id, $newPass) {

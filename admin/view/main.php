@@ -2,7 +2,7 @@
     <div class="header_app">
         <h2 class="title">Thống kê</h2>
     </div>
-    <div class="container_main">
+    <div class="container_main" style="margin-top: 10px;">
         <div class="dashboard">
             <ul class="list_dash">
                 <li class="item_dash">

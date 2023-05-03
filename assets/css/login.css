@@ -21,7 +21,7 @@
    padding: 10px;
 }
 .title {
-   font-size: 26px;
+   font-size: 2.6rem;
    color: #fff;
    font-family: "Roboto";
    text-transform: uppercase;
@@ -42,20 +42,18 @@
    top: 50%;
    left: 5px;
    transform: translateY(-50%);
-   font-size: 20px;
+   font-size: 1.2rem;
    color: #fff;
 }
-.box_input_pass i.bx-show {
+.box_input_pass i.bx-show,
+.box_input_pass i.bx-hide {
    left: unset;
    right: 10px;
    display: none;
    cursor: pointer;
 }
 .box_input_pass i.bx-hide {
-   left: unset;
-   right: 10px;
    display: block;
-   cursor: pointer;
 }
 .box_input_pass.active .bx-show{
    display: block;
@@ -71,24 +69,37 @@
    outline: none;
    border: none;
    border-bottom: 1px solid #fff;
+   position: relative;
+}
+.message__error {
+   display: block;
+    font-size: 0.9rem;
+    color: red;
+    position: absolute;
+    bottom: -18px;
+    left: 44px;
 }
 .forest_pass {
    display: block;
    text-align: right;
    text-decoration: none;
    color: #fff;
-   font-size: 14px;
+   font-size: 0.9rem;
    font-weight: bold;
    margin: 20px 0px;
    animation: showFormLoginRight 0.6s linear forwards;
 }
+
 .forest_pass:hover {
    color: #ad7b67;
 }
-.submit {
+.submit,
+.sign_up {
+   display: block;
+   text-align: center;
    width: 100%;
    padding: 10px;
-   font-size: 16px;
+   font-size: 1rem;
    text-transform: uppercase;
    font-weight: bold;
    outline: none;
@@ -99,6 +110,9 @@
    border-radius: 3px;
    cursor: pointer;
    animation: showFormLoginRight 0.6s linear forwards;
+}
+.sign_up {
+   text-decoration: none;
 }
 .submit:hover {
    background-color: #b5183f;
@@ -112,25 +126,12 @@
    text-align: center;
    width: 30px;
    height: 30px;
-   font-size: 12px;
+   font-size: 0.7rem;
    border-radius: 50%;
    color: #fff;
    background-color: #b5183f;
 }
-.sign_up {
-   display: block;
-   padding: 10px;
-   text-align: center;
-   width: 100%;
-   text-decoration: none;
-   background: #ff3366;
-   color: #fff;
-   font-size: 16px;
-   text-transform: uppercase;
-   font-weight: bold;
-   border-radius: 3px;
-   animation: showFormLoginRight 0.6s linear forwards;
-}
+
 .page_login {
    display: flex;
    align-items: center;
@@ -140,7 +141,7 @@
    font-weight: bold;
 }
 .bx-left-arrow-alt {
-   font-size: 20px;
+   font-size: 2rem;
 }
 
 @keyframes showFormLoginLeft {

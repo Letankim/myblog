@@ -4,6 +4,9 @@
     --background-header: #0f162f;
     --height-banner: 640px;
     --main-color: #ad7b67;
+    --text-color: #000;
+    --main-width: 1200px;
+    --hover-color: #fff;
 }
 
 html {

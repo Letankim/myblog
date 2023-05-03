@@ -6,11 +6,17 @@
     include "./admin/model/banner.php";
     include "./admin/model/comment.php";
     include "./admin/model/user.php";
-    include "./admin/model/aboutus.php";
+    include "./admin/model/introduction.php";
     include "./admin/model/slogan.php";
     include "./admin/model/advertise.php";
     include "./admin/model/navigation.php";
     include "./mail/sendmail.php";
+    include "./viewUser/components/header.php";
+    include "./viewUser/components/footer.php";
+    include "./viewUser/components/allPost.php";
+    include "./viewUser/components/nameLink.php";
+    include "./viewUser/components/showComment.php";
+    include "./viewUser/pages/advertise.php";
     if(isset($_GET['act']) && $_GET['act']) {
         switch($_GET['act']) {
             case "trangchu":
@@ -19,10 +25,10 @@
                 $oneAdver = showOneAdver();
                 $oneBanner = showOneBanner();
                 $allComment = getAllComment();
-                include "./viewUser/main.php";
+                include "./viewUser/pages/main.php";
                 break;
             case "post":
-                $allPost = getAllPost();
+                $allPost = getAllPostActive();
                 $pages = ceil(count($allPost) / 5);
                 $pageNumber = 1;
                 if(isset($_GET['page']) && $_GET['page']) {
@@ -34,17 +40,18 @@
                 $pagePost = pagePosts($page, 5);
                 $allComment = getAllComment();
                 $allNav = getAllNav();
-                include "./viewUser/post.php";
+                include "./viewUser/pages/post.php";
                 break;
             case "blogItem":
-                if(isset($_GET['id'])&& $_GET['id']) {
+                if(isset($_GET['id']) && $_GET['id']) {
                     $id = $_GET['id'];
                     $onePost = getOnePost($id);
                     $view = $onePost[0]['view'];
                     updateView($id, ($view + 1));
                 }
                 $allComment = getAllComment();
-                include "./viewUser/blogItem.php";
+                $allUser = getAllUsers();
+                include "./viewUser/pages/blogItem.php";
                 break;
             case "search":
                 if(isset($_POST['search']) && $_POST['search']) {
@@ -52,12 +59,12 @@
                     $resultSearch = getSearch($keyWord);
                 }
                 $allComment = getAllComment();
-                include "./viewUser/search.php";
+                include "./viewUser/pages/search.php";
                 break;
             case "personal":
                 $id = $_SESSION['userId'];
                 $oneUser = getOneUser($id);
-                include "./viewUser/personal.php";
+                include "./viewUser/pages/personal.php";
                 break;
             case "updateInfor":
                 if(isset($_POST['submit']) && $_POST['submit']) {
@@ -86,10 +93,10 @@
                 break;
             case "about":
                 $oneIntro = getIntroShow();
-                include "./viewUser/aboutus.php";
+                include "./viewUser/pages/introduction.php";
                 break;
             case "login":
-                header("Location: ./admin/login.php");
+                header("Location: ./admin/auth/login.php");
                 break;
             case "logout":
                 if(isset($_SESSION['userId'])  && isset($_SESSION['username'])) {
@@ -100,7 +107,7 @@
                 header("Location: index.php");
                 break;
             case "signup":
-                header("Location: ./admin/signup.php");
+                header("Location: ./admin/auth/signup.php");
                 break;
             default:
                 
@@ -112,6 +119,6 @@
         $oneAdver = showOneAdver();
         $pagePost = pagePosts(0, 6);
         $allComment = getAllComment();
-        include "./viewUser/main.php";
+        include "./viewUser/pages/main.php";
     }
 ?>

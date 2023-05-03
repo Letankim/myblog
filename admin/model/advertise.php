@@ -8,6 +8,15 @@
         $ketqua = $stmt->fetchAll();
         return $ketqua;
     }
+    function getFilterAdver($status) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_advertiser WHERE status=$status ORDER BY id DESC");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
     function getOneAdver($id) {
         $conn = connect();
         $stmt = $conn->prepare("SELECT * FROM tbl_advertiser WHERE id=$id");
@@ -29,6 +38,12 @@
         } else {
             $sql = "UPDATE tbl_advertiser SET name_program='$name', link_adver='$link', status='$status' WHERE id='$id'";
         }
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    }
+    function updateStatusAdver($id, $status) {
+        $conn = connect();
+        $sql = "UPDATE tbl_advertiser SET status='$status' WHERE id='$id'";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }

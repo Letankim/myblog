@@ -15,9 +15,12 @@ if(hre) {
 let shareIframe = document.querySelector('.share_post_frame');
 
 window.onload = function() {
-    console.log(window.location.href);
-    // shareIframe.src = "https://www.facebook.com/plugins/share_button.php?href=" + window.location.href + "&layout=button&size=large&width=87&height=28&appId";
-    // console.log(shareIframe);
+    const hr = document.URL;
+    shareIframe.src = 'https://www.facebook.com/plugins/share_button.php?href='+hr+'&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId';
 }
+
+
+
+
 
 

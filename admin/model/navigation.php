@@ -1,7 +1,25 @@
 <?php
     function getAllNav() {
         $conn = connect();
-        $stmt = $conn->prepare("SELECT * FROM tbl_navigation");
+        $stmt = $conn->prepare("SELECT * FROM tbl_navigation ORDER BY id DESC");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
+    function devicePageNavigation($page, $numberNav) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_navigation ORDER BY id DESC LIMIT $page, $numberNav");
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $ketqua = $stmt->fetchAll();
+        return $ketqua;
+    }
+    function getFilterNav($status) {
+        $conn = connect();
+        $stmt = $conn->prepare("SELECT * FROM tbl_navigation WHERE status=".$status."");
         $stmt->execute();
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -26,6 +44,13 @@
     function updateNav($id, $navigation, $status) {
         $conn = connect();
         $sql = "UPDATE tbl_navigation SET name='".$navigation."', status='".$status."' WHERE id=$id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    }
+
+    function updateStatusNav($id, $status) {
+        $conn = connect();
+        $sql = "UPDATE tbl_navigation SET status='".$status."' WHERE id=$id";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
     }

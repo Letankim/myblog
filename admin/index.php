@@ -2,25 +2,26 @@
     session_start();
     ob_start();
     if(isset($_SESSION['roleAdmin']) && $_SESSION['roleAdmin'] == 1) {
-        include "./view/header.php";
-        include "./model/connectdb.php";
-        include "./model/navigation.php";
-        include "./model/post.php";
-        include "./model/user.php";
-        include "./model/banner.php";
-        include "./model/aboutus.php";
-        include "./model/comment.php";
-        include "./model/slogan.php";
-        include "./model/advertise.php";
+        include "./config/inclu.php";
         if(isset($_GET['act']) && $_GET['act']) {
+            $type = $_GET['act'];
             switch($_GET['act']) {
                 case "navigation":
+                    $allNav = getAllNav();
+                    $pages = ceil(count($allNav) / 15);
+                    $pageNumber = 1;
+                    if(isset($_GET['page']) && $_GET['page']) {
+                        $pageNumber = $_GET['page'];
+                        $page = ($pageNumber - 1) * 15;
+                    } else {
+                        $page = 0;
+                    }
+                    $pageNav = devicePageNavigation($page, 15);
                     if(isset($_POST['submit']) && $_POST['submit']) {
                         $navigation = $_POST['navigation'];
                         $status = $_POST['status'];
                         addNav($navigation, $status);
                     }
-                    $allNav = getAllNav();
                     include "./view/navigation.php";
                     break;
                 case "editNavForm":
@@ -29,7 +30,7 @@
                         $oneNav = getOneNav($id);
                     }
                     $allNav = getAllNav();
-                    include "./view/editNavForm.php";
+                    include "./view/editForm/editNavForm.php";
                     break;
                 case "editNavigation":
                     if(isset($_POST['submit']) && $_POST['submit']) {
@@ -52,9 +53,20 @@
                     header("Location: ?act=navigation");
                     break;
                 case "post":
+                    $allPost = getAllPost();
+                    $pages = ceil(count($allPost) / 15);
+                    $pageNumber = 1;
+                    if(isset($_GET['page']) && $_GET['page']) {
+                        $pageNumber = $_GET['page'];
+                        $page = ($pageNumber - 1) * 15;
+                    } else {
+                        $page = 0;
+                    }
+                    $pagePost = pagePosts($page, 15);
                     if(isset($_POST['submit']) && $_POST['submit']) {
                         $idNav = $_POST['navigation'];
                         $title = $_POST['title_post'];
+                        $shortDesc = $_POST['short_desc'];
                         $content = $_POST['content'];
                         $status = $_POST['status'];
                         $zone_Asia_Ho_Chi_Minh = date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -71,10 +83,9 @@
                         if($uploadOk == 1) {
                             move_uploaded_file($_FILES['image']["tmp_name"], $target_file);
                             $img = basename($_FILES['image']["name"]);
-                            addPost($idNav, $title, $content ,$img ,$status, $date);
+                            addPost($idNav, $title, $shortDesc,$content ,$img ,$status, $date);
                         }
                     }
-                    $allPost = getAllPost();
                     $allComment = getAllComment();
                     $allUser = getAllUsers();
                     $allNav = getAllNav();
@@ -86,14 +97,17 @@
                         $onePost = getOnePost($id);
                     }
                     $allPost = getAllPost();
+                    $allComment = getAllComment();
+                    $allUser = getAllUsers();
                     $allNav = getAllNav();
-                    include "./view/editPostForm.php";
+                    include "./view/editForm/editPostForm.php";
                     break;
                 case "updatePost":
                     if(isset($_POST['submit']) && $_POST['submit']) {
                         $id = $_POST['id'];
                         $idNav = $_POST['navigation'];
                         $title = $_POST['title_post'];
+                        $shortDesc = $_POST['short_desc'];
                         $content = $_POST['content'];
                         $status = $_POST['status'];
                         $view = $_POST['view'];
@@ -116,7 +130,7 @@
                         } else {
                             $img = "";
                         }
-                        updatePost($id, $idNav, $title, $content ,$img ,$status, $date, ($view));
+                        updatePost($id, $idNav, $title, $shortDesc,$content ,$img ,$status, $date, ($view));
                     }
                     $allPost = getAllPost();
                     $allComment = getAllComment();
@@ -168,7 +182,7 @@
                         $oneUser = getOneUser($id);
                     }
                     $allUser = getAllUsers();
-                    include "./view/editUserForm.php";
+                    include "./view/editForm/editUserForm.php";
                     break;
                 case "updateUser": 
                     if(isset($_POST['submit']) && $_POST['submit']) {
@@ -195,6 +209,16 @@
                     header("Location: index.php?act=taikhoan");
                     break;
                 case "banner": 
+                    $pageNumberOnPage = 15;
+                    $allBanner = getAllBanner();
+                    $pages = ceil(count($allBanner)/$pageNumberOnPage);
+                    $pageNumber = 1;
+                    if(isset($_GET['page']) && $_GET['page']) {
+                        $page = ($_GET['page'] - 1) * $pageNumberOnPage;
+                    } else {
+                        $page = 0;
+                    }
+                    $pageBanner = devicePageBanner($page , $pageNumberOnPage);
                     if(isset($_POST["submit"]) && $_POST["submit"]) {
                         $status = $_POST["status"].
                         $target_dir = "../uploads/";
@@ -211,7 +235,6 @@
                             addBanner($status, $img);
                         }
                     }
-                    $allBanner = getAllBanner();
                     include "./view/banner.php";
                     break;
                 case "editBannerForm":
@@ -220,7 +243,7 @@
                         $oneBanner = getOneBanner($id);
                     } 
                     $allBanner = getAllBanner();
-                    include "./view/editBannerForm.php";
+                    include "./view/editForm/editBannerForm.php";
                     break;
                 case "updateBanner":
                     if(isset($_POST["submit"]) && $_POST["submit"]) {
@@ -287,7 +310,7 @@
                         $oneIntro = getOneIntro($id);
                     }
                     $allIntro = getAllIntro();
-                    include "./view/editIntroForm.php";
+                    include "./view/editForm/editIntroForm.php";
                     break;
                 case "updateIntro":
                     if(isset($_POST["submit"]) && $_POST["submit"]) {
@@ -340,7 +363,7 @@
                         $oneSlogan = getOneSlogan($id);
                     }
                     $allSlogan = getAllSlogan();
-                    include "./view/editFormSlogan.php";
+                    include "./view/editForm/editFormSlogan.php";
                     break;
                 case "updateSlogan":
                     if(isset($_POST['submit']) && $_POST['submit']) {
@@ -389,7 +412,7 @@
                         $oneAdver = getOneAdver($id);
                     }
                     $allAdver = getAllAdver();
-                    include "./view/editAdverForm.php";
+                    include "./view/editForm/editAdverForm.php";
                     break;
                 case "updateAdver":
                     if(isset($_POST['submit']) && $_POST['submit']) {
@@ -445,6 +468,6 @@
         }
         include "./view/footer.php";
     } else {
-        header("Location: login.php");
+        header("Location: ../admin/auth/login.php");
     }
 ?>
